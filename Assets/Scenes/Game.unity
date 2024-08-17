@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7207546
       objectReference: {fileID: 0}
+    - target: {fileID: 739377143199614747, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4122264395899538400, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Name
       value: Wall2
@@ -207,6 +211,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 739377143199614747, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4122264395899538400, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
       propertyPath: m_Name
       value: Platform
@@ -275,6 +283,10 @@ PrefabInstance:
     - target: {fileID: 739377143199614747, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Color.r
       value: 0.7207546
+      objectReference: {fileID: 0}
+    - target: {fileID: 739377143199614747, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4122264395899538400, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Name
@@ -690,6 +702,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 8290833794132235592, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -767,6 +783,10 @@ PrefabInstance:
     - target: {fileID: 164962674084687186, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321322162838300048, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8972222787792544318, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
       propertyPath: m_LocalPosition.x

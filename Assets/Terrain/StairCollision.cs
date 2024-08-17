@@ -18,7 +18,7 @@ public class StairCollision : MonoBehaviour
     void Update()
     {
         float playerbottom = Player.transform.position.y - Player.transform.localScale.y / 2;
-        if (Player.transform.position.x - transform.position.x + transform.position.y <= playerbottom)
+        if (Mathf.Tan(transform.eulerAngles.z * 3.14f / 180) * (Player.transform.position.x - transform.position.x) + transform.position.y <= playerbottom)
         {
             col.enabled = true;
         }
