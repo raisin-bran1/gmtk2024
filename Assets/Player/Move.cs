@@ -6,6 +6,7 @@ public class Move : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float jump, speed;
+    private bool grounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +16,9 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && grounded)
         {
+            grounded = false;
             Vector2 v = rb.velocity;
             v.y = jump;
             rb.velocity = v;
@@ -44,5 +46,13 @@ public class Move : MonoBehaviour
             v.x = 0;
         }
         rb.velocity = v;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
     }
 }
