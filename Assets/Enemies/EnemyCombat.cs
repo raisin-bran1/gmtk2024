@@ -14,6 +14,12 @@ public class EnemyCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
         if (health <= 0)
         {
             Destroy(gameObject);

@@ -190,3 +190,4 @@ MonoBehaviour:
   maxhealth: 20
   health: 0
   invincibilityDuration: 0.3
+  fireGap: 0.5

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Combat : MonoBehaviour
@@ -7,8 +8,8 @@ public class Combat : MonoBehaviour
     private bool facingLeft;
     private Rigidbody2D rb;
     public GameObject bullet;
-    public float maxhealth = 20, health, invincibilityDuration;
-    private float iFrames = 0;
+    public float maxhealth = 20, health, invincibilityDuration, fireGap;
+    private float iFrames = 0, lastFired = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,21 +28,20 @@ public class Combat : MonoBehaviour
             facingLeft = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKey(KeyCode.K) && lastFired <= 0)
         {
             GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             if (facingLeft)
             {
                 newBullet.GetComponent<Projectile>().speed *= -1;
             }
-        }
-
-        if (health <= 0)
-        {
-            health = 0;
+            lastFired = fireGap;
+            gameObject.GetComponent<Move>().extFreeze(0.5f);
+            rb.velocity = new Vector2();
         }
 
         iFrames -= Time.deltaTime;
+        lastFired -= Time.deltaTime;
 
     }
 
@@ -49,7 +49,7 @@ public class Combat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && iFrames <= 0)
         {
-            health -= 1;
+            health = Math.Max(health-1, 0);
             Vector3 collisionVector = transform.position - collision.transform.position;
             GetComponent<Move>().Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
             iFrames = invincibilityDuration;

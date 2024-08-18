@@ -19,16 +19,16 @@ public class Projectile : MonoBehaviour
     {
         rb.velocity = Vector2.right * speed;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("Stair"))
+        if (collider.gameObject.CompareTag("Stair"))
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collider);
         } else
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            if (collider.gameObject.CompareTag("Enemy"))
             {
-                collision.gameObject.GetComponent<EnemyCombat>().health -= damage;
+                collider.gameObject.GetComponent<EnemyCombat>().Damage(damage);
             }
             Destroy(gameObject);
         }

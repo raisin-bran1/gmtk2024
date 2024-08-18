@@ -6,16 +6,19 @@ public class Move : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float jump, speed;
-    private bool grounded, frozen;
+    private bool grounded, frozen, big;
+    private float extFrozen = 0;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        big = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        extFrozen -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.W) && grounded && !frozen)
         {
             grounded = false;
@@ -24,9 +27,27 @@ public class Move : MonoBehaviour
             rb.velocity = v;
         }
 
-        if (rb.velocity.x < 0.5)
+        if (frozen && rb.velocity.x < 0.5 && extFrozen <= 0)
         {
             frozen = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (!big)
+            {
+                big = true;
+                transform.localScale = transform.localScale * 2f;
+                jump *= 0.5f;
+                speed *= 0.5f;
+            }
+            else
+            {
+                big = false;
+                transform.localScale = transform.localScale * 0.5f;
+                jump *= 2f;
+                speed *= 2f;
+            }
         }
     }
 
@@ -53,6 +74,7 @@ public class Move : MonoBehaviour
             v.x = 0;
         }
         rb.velocity = v;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,5 +89,11 @@ public class Move : MonoBehaviour
     {
         frozen = true;
         rb.velocity = direction;
+    }
+
+    public void extFreeze(float duration)
+    {
+        extFrozen = duration;
+        frozen = true;
     }
 }
