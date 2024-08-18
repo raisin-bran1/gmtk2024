@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindWithTag("Player").GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Stair"))
+        if (collision.gameObject.CompareTag("Stair"))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
         } else

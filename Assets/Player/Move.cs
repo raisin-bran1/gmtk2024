@@ -6,7 +6,7 @@ public class Move : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float jump, speed;
-    private bool grounded;
+    private bool grounded, frozen;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && grounded)
+        if (Input.GetKeyDown(KeyCode.W) && grounded && !frozen)
         {
             grounded = false;
             Vector2 v = rb.velocity;
@@ -24,12 +24,19 @@ public class Move : MonoBehaviour
             rb.velocity = v;
         }
 
+        if (rb.velocity.x < 0.5)
+        {
+            frozen = false;
+        }
     }
 
     void FixedUpdate()
     {
         Vector2 v = rb.velocity;
-        if (Input.GetKey(KeyCode.A))
+        if (frozen)
+        {
+
+        } else if (Input.GetKey(KeyCode.A))
         {
             v.x = -speed;
             //v.x -= speed * Time.deltaTime * 6;
@@ -54,5 +61,11 @@ public class Move : MonoBehaviour
         {
             grounded = true;
         }
+    }
+
+    public void Bump(Vector2 direction)
+    {
+        frozen = true;
+        rb.velocity = direction;
     }
 }

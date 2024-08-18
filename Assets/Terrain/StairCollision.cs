@@ -6,6 +6,7 @@ public class StairCollision : MonoBehaviour
 {
     GameObject Player;
     BoxCollider2D col;
+    bool enablecol;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +21,24 @@ public class StairCollision : MonoBehaviour
         float playerbottom = Player.transform.position.y - Player.transform.localScale.y / 2;
         if (Mathf.Tan(transform.eulerAngles.z * 3.14f / 180) * (Player.transform.position.x - transform.position.x) + transform.position.y <= playerbottom)
         {
-            col.enabled = true;
+            enablecol = true;
         }
         else
         {
-            col.enabled = false;
+            enablecol = false;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            col.enabled = false;
+            enablecol = false;
+        }
+
+        if (!enablecol)
+        {
+            Physics2D.IgnoreCollision(col, Player.GetComponent<Collider2D>());
+        } else
+        {
+            Physics2D.IgnoreCollision(col, Player.GetComponent<Collider2D>(), false);
         }
     }
 }

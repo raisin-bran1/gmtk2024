@@ -5,12 +5,14 @@ using UnityEngine;
 public class Combat : MonoBehaviour
 {
     private bool facingLeft;
+    private Rigidbody2D rb;
     public GameObject bullet;
     public float maxhealth = 20, health;
     // Start is called before the first frame update
     void Start()
     {
         health = maxhealth;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -44,6 +46,8 @@ public class Combat : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             health -= 1;
+            Vector3 collisionVector = transform.position - collision.transform.position;
+            GetComponent<Move>().Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
         }
     }
 }

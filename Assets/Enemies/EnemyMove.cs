@@ -20,7 +20,17 @@ public class EnemyMove : MonoBehaviour
         Vector2 v = rb.velocity;
         if (Mathf.Abs(Player.transform.position.y - transform.position.y) >= 2.5)
         {
-            v.x = 0;
+            // Idle movement
+            if (Mathf.Abs(Player.transform.position.x - transform.position.x) >= 2.5)
+            {
+                v.x = 0;
+            } else if (Player.transform.position.x > transform.position.x)
+            {
+                v.x = -speed / 2;
+            } else
+            {
+                v.x = speed / 2; 
+            }
         } else
         {
             if (Player.transform.position.x > transform.position.x)
