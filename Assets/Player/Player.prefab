@@ -187,3 +187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8866795045446650758, guid: d72d464b3e40a3341afaba8562ce37b6, type: 3}
+  maxhealth: 20
+  health: 0
+  invincibilityDuration: 0.3

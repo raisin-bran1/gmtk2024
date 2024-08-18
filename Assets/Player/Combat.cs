@@ -7,7 +7,8 @@ public class Combat : MonoBehaviour
     private bool facingLeft;
     private Rigidbody2D rb;
     public GameObject bullet;
-    public float maxhealth = 20, health;
+    public float maxhealth = 20, health, invincibilityDuration;
+    private float iFrames = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,15 +40,19 @@ public class Combat : MonoBehaviour
         {
             health = 0;
         }
+
+        iFrames -= Time.deltaTime;
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && iFrames <= 0)
         {
             health -= 1;
             Vector3 collisionVector = transform.position - collision.transform.position;
             GetComponent<Move>().Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
+            iFrames = invincibilityDuration;
         }
     }
 }
