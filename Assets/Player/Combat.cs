@@ -6,10 +6,11 @@ public class Combat : MonoBehaviour
 {
     private bool facingLeft;
     public GameObject bullet;
+    public float maxhealth = 20, health;
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = maxhealth;
     }
 
     // Update is called once per frame
@@ -30,6 +31,19 @@ public class Combat : MonoBehaviour
             {
                 newBullet.GetComponent<Projectile>().speed *= -1;
             }
+        }
+
+        if (health <= 0)
+        {
+            health = 0;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            health -= 1;
         }
     }
 }
