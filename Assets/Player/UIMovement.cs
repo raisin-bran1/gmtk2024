@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBarMove : MonoBehaviour
+public class UIMovement : MonoBehaviour
 {
 
+    public float localX, localY, offsetX, offsetY;
     public Camera cam;
 
     // Start is called before the first frame update
@@ -16,6 +17,6 @@ public class HealthBarMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)) + new Vector3(2, 2, 0);
+        gameObject.transform.position = cam.ViewportToWorldPoint(new Vector3(localX, localY, cam.nearClipPlane)) + new Vector3(offsetX, offsetY, 0);
     }
 }
