@@ -45,6 +45,7 @@ public class Move : MonoBehaviour
                 transform.localScale = transform.localScale * 2f;
                 jump -= 4;
                 speed *= 0.5f;
+                rb.mass *= 2;
                 if (gameObject.transform.childCount > weaponChildNumber) {
                     gameObject.transform.GetChild(weaponChildNumber).gameObject.GetComponent<GunCombat>().damage *= 2f;
                 }
@@ -55,6 +56,7 @@ public class Move : MonoBehaviour
                 transform.localScale = transform.localScale * 0.5f;
                 jump += 4;
                 speed *= 2f;
+                rb.mass *= 0.5f;
                 if (gameObject.transform.childCount > weaponChildNumber)
                 {
                     gameObject.transform.GetChild(weaponChildNumber).gameObject.GetComponent<GunCombat>().damage *= 0.5f;
