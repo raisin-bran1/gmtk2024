@@ -8,11 +8,15 @@ public class Move : MonoBehaviour
     public float jump, speed;
     private bool grounded, frozen, big;
     private float extFrozen = 0;
+
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         big = true;
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -81,6 +85,8 @@ public class Move : MonoBehaviour
             v.x = 0;
         }
         rb.velocity = v;
+
+        animator.SetFloat("VelocityX", Mathf.Abs(v.x));
 
     }
 
