@@ -10,6 +10,7 @@ public class Combat : MonoBehaviour
     public float maxhealth = 20, health, invincibilityDuration;
     private float iFrames = 0, lastFired = 0;
     private GameObject weapon;
+    public GameObject deathscreen;
 
     Move move;
 
@@ -31,6 +32,9 @@ public class Combat : MonoBehaviour
         if (health > maxhealth)
         {
             health = maxhealth;
+        } else if (health <= 0)
+        {
+            StartCoroutine(Death());
         }
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -102,5 +106,13 @@ public class Combat : MonoBehaviour
             move.Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
             iFrames = invincibilityDuration;
         }
+    }
+
+    IEnumerator Death()
+    {
+        // [Trigger death animation]
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(deathscreen);
+        Time.timeScale = 0;
     }
 }

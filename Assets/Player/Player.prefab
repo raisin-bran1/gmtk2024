@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 09c6c3073c8899c49bbfad5235821ff1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -186,8 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0b3badb1083c541bc9b1f3de35a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8866795045446650758, guid: d72d464b3e40a3341afaba8562ce37b6, type: 3}
   maxhealth: 20
   health: 0
   invincibilityDuration: 0.3
-  fireGap: 0.5
+  deathscreen: {fileID: 0}

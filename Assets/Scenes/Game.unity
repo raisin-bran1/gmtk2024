@@ -439,7 +439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 739377143199614747, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4122264395899538400, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
       propertyPath: m_Name
@@ -810,7 +810,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 739377143199614747, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4122264395899538400, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
       propertyPath: m_Name
@@ -969,11 +969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3763233796983073211, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.79
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3763233796983073211, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.1500006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3763233796983073211, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1622,11 +1622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3763233796983073211, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.57
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3763233796983073211, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.38
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3763233796983073211, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1738,13 +1738,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5690888850357491133, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
+      propertyPath: deathscreen
+      value: 
+      objectReference: {fileID: 8143750570415597809, guid: 7564bf2dab93c9a43b2dfd601a55b345, type: 3}
     - target: {fileID: 164962674084687186, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8321322162838300048, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8972222787792544318, guid: a24eb9eb5dd9f5e4cbe013b2cc3f680a, type: 3}
       propertyPath: m_LocalPosition.x
