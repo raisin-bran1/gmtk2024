@@ -13,6 +13,7 @@ public class Combat : MonoBehaviour
     public GameObject deathscreen;
     public Animator animator;
     private bool fire = false;
+    private int weaponChildNumber = 2;
 
     SpriteRenderer spriteRenderer;
     Move move;
@@ -95,9 +96,9 @@ public class Combat : MonoBehaviour
             if (Input.GetKey(KeyCode.L) && lastFired <= 0)
             {
                 lastFired = 0.5f;
-                if (gameObject.transform.childCount > 1)
+                if (gameObject.transform.childCount > weaponChildNumber)
                 {
-                    gameObject.transform.GetChild(1).gameObject.transform.parent = null;
+                    gameObject.transform.GetChild(weaponChildNumber).gameObject.transform.parent = null;
                 }
                 weapon = collider.gameObject;
                 weapon.transform.parent = gameObject.transform;

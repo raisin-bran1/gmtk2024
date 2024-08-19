@@ -8,6 +8,7 @@ public class Move : MonoBehaviour
     public float jump, speed;
     private bool grounded, frozen, big;
     private float extFrozen = 0;
+    private int weaponChildNumber = 2;
 
     Animator animator;
 
@@ -44,8 +45,8 @@ public class Move : MonoBehaviour
                 transform.localScale = transform.localScale * 2f;
                 jump -= 4;
                 speed *= 0.5f;
-                if (gameObject.transform.childCount > 1) {
-                    gameObject.transform.GetChild(1).gameObject.GetComponent<GunCombat>().damage *= 2f;
+                if (gameObject.transform.childCount > weaponChildNumber) {
+                    gameObject.transform.GetChild(weaponChildNumber).gameObject.GetComponent<GunCombat>().damage *= 2f;
                 }
             }
             else
@@ -54,9 +55,9 @@ public class Move : MonoBehaviour
                 transform.localScale = transform.localScale * 0.5f;
                 jump += 4;
                 speed *= 2f;
-                if (gameObject.transform.childCount > 1)
+                if (gameObject.transform.childCount > weaponChildNumber)
                 {
-                    gameObject.transform.GetChild(1).gameObject.GetComponent<GunCombat>().damage *= 0.5f;
+                    gameObject.transform.GetChild(weaponChildNumber).gameObject.GetComponent<GunCombat>().damage *= 0.5f;
                 }
             }
         }
