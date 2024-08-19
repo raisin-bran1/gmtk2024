@@ -12,6 +12,7 @@ public class Combat : MonoBehaviour
     private GameObject weapon;
     public GameObject deathscreen;
 
+    SpriteRenderer spriteRenderer;
     Move move;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class Combat : MonoBehaviour
         health = maxhealth;
         rb = GetComponent<Rigidbody2D>();
         move = GetComponent<Move>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -44,6 +46,7 @@ public class Combat : MonoBehaviour
                 weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
                 weapon.GetComponent<SpriteRenderer>().flipX = false;
             }
+            spriteRenderer.flipX = true;
             facing = 1;
         } else if (Input.GetKeyDown(KeyCode.A))
         {
@@ -52,6 +55,7 @@ public class Combat : MonoBehaviour
                 weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
                 weapon.GetComponent<SpriteRenderer>().flipX = true;
             }
+            spriteRenderer.flipX = false;
             facing = -1;
         }
 
