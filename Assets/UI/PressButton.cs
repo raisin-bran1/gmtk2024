@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class EnemyCombat : MonoBehaviour
+public class PressButton : MonoBehaviour
 {
-    public float health = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,12 +18,8 @@ public class EnemyCombat : MonoBehaviour
 
     }
 
-    public void Damage(float damage)
+    public void LoadGame()
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        SceneManager.LoadScene("Game");
     }
 }
