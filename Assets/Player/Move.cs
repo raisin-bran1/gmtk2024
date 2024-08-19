@@ -89,6 +89,10 @@ public class Move : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Stair"))
         {
             grounded = true;
+            if (frozen)
+            {
+                rb.velocity = new Vector2();
+            }
         }
     }
 
@@ -107,5 +111,10 @@ public class Move : MonoBehaviour
     public bool isBig()
     {
         return big;
+    }
+
+    public bool isGrounded()
+    {
+        return grounded;
     }
 }

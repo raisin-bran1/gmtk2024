@@ -10,11 +10,15 @@ public class Combat : MonoBehaviour
     public float maxhealth = 20, health, invincibilityDuration;
     private float iFrames = 0, lastFired = 0;
     private GameObject weapon;
+
+    Move move;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxhealth;
         rb = GetComponent<Rigidbody2D>();
+        move = GetComponent<Move>();
     }
 
     // Update is called once per frame
@@ -45,8 +49,11 @@ public class Combat : MonoBehaviour
                 weapon.GetComponent<GunCombat>().Fire();
                 lastFired = weapon.GetComponent<GunCombat>().fireGap;
             }
-            gameObject.GetComponent<Move>().extFreeze(0.5f);
-            rb.velocity = new Vector2();
+            move.extFreeze(0.5f);
+            if (move.isGrounded())
+            {
+                rb.velocity = new Vector2();
+            }
         }
 
         iFrames -= Time.deltaTime;
@@ -67,7 +74,7 @@ public class Combat : MonoBehaviour
                 }
                 weapon = collider.gameObject;
                 weapon.transform.parent = gameObject.transform;
-                if (!gameObject.GetComponent<Move>().isBig())
+                if (!move.isBig())
                 {
                     weapon.transform.localScale *= 0.5f;
                 }
@@ -86,7 +93,7 @@ public class Combat : MonoBehaviour
         {
             health = Math.Max(health-1, 0);
             Vector3 collisionVector = transform.position - collision.transform.position;
-            GetComponent<Move>().Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
+            move.Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
             iFrames = invincibilityDuration;
         }
     }
