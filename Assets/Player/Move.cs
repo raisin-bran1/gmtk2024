@@ -93,6 +93,18 @@ public class Move : MonoBehaviour
             {
                 rb.velocity = new Vector2();
             }
+            if (collision.gameObject.CompareTag("Stair"))
+            {
+                rb.gravityScale = 0;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stair"))
+        {
+            rb.gravityScale = 5;
         }
     }
 

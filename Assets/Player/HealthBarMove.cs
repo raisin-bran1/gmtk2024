@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthBarMove : MonoBehaviour
 {
 
-    public Camera camera;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,6 @@ public class HealthBarMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane)) + new Vector3(2, 2, 0);
+        gameObject.transform.position = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)) + new Vector3(2, 2, 0);
     }
 }

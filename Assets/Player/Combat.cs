@@ -51,13 +51,10 @@ public class Combat : MonoBehaviour
             facing = -1;
         }
 
-        if (Input.GetKey(KeyCode.K) && lastFired <= 0)
+        if (Input.GetKey(KeyCode.K) && lastFired <= 0 && weapon != null)
         {
-            if (weapon != null)
-            {
-                weapon.GetComponent<GunCombat>().Fire();
-                lastFired = weapon.GetComponent<GunCombat>().fireGap;
-            }
+            weapon.GetComponent<GunCombat>().Fire();
+            lastFired = weapon.GetComponent<GunCombat>().fireGap;
             move.extFreeze(0.5f);
             if (move.isGrounded())
             {
