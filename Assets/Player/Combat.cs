@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    private bool facingLeft;
+    private float facing;
     private Rigidbody2D rb;
-    public GameObject bullet;
-    public float maxhealth = 20, health, invincibilityDuration, fireGap;
+    public float maxhealth = 20, health, invincibilityDuration;
     private float iFrames = 0, lastFired = 0;
+    private GameObject weapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,20 +22,29 @@ public class Combat : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            facingLeft = false;
+            if (facing == -1 && weapon != null)
+            {
+                weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
+                weapon.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            facing = 1;
         } else if (Input.GetKeyDown(KeyCode.A))
         {
-            facingLeft = true;
+            if (facing == 1 && weapon != null)
+            {
+                weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
+                weapon.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            facing = -1;
         }
 
         if (Input.GetKey(KeyCode.K) && lastFired <= 0)
         {
-            GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            if (facingLeft)
+            if (weapon != null)
             {
-                newBullet.GetComponent<Projectile>().speed *= -1;
+                weapon.GetComponent<GunCombat>().Fire();
+                lastFired = weapon.GetComponent<GunCombat>().fireGap;
             }
-            lastFired = fireGap;
             gameObject.GetComponent<Move>().extFreeze(0.5f);
             rb.velocity = new Vector2();
         }
@@ -43,6 +52,32 @@ public class Combat : MonoBehaviour
         iFrames -= Time.deltaTime;
         lastFired -= Time.deltaTime;
 
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Weapon"))
+        {
+            if (Input.GetKey(KeyCode.L) && lastFired <= 0)
+            {
+                lastFired = 1;
+                if (gameObject.transform.childCount > 1)
+                {
+                    gameObject.transform.GetChild(1).gameObject.transform.parent = null;
+                }
+                weapon = collider.gameObject;
+                weapon.transform.parent = gameObject.transform;
+                if (!gameObject.GetComponent<Move>().isBig())
+                {
+                    weapon.transform.localScale *= 0.5f;
+                }
+                weapon.transform.position = gameObject.transform.position + new Vector3(facing * 1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
+                if (facing == -1)
+                {
+                    weapon.GetComponent<SpriteRenderer>().flipX = true;
+                }
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

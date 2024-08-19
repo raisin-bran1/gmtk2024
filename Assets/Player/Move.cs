@@ -38,15 +38,22 @@ public class Move : MonoBehaviour
             {
                 big = true;
                 transform.localScale = transform.localScale * 2f;
-                jump *= 0.5f;
+                jump -= 4;
                 speed *= 0.5f;
+                if (gameObject.transform.childCount > 1) {
+                    gameObject.transform.GetChild(1).gameObject.GetComponent<GunCombat>().damage *= 2f;
+                }
             }
             else
             {
                 big = false;
                 transform.localScale = transform.localScale * 0.5f;
-                jump *= 2f;
+                jump += 4;
                 speed *= 2f;
+                if (gameObject.transform.childCount > 1)
+                {
+                    gameObject.transform.GetChild(1).gameObject.GetComponent<GunCombat>().damage *= 0.5f;
+                }
             }
         }
     }
@@ -95,5 +102,10 @@ public class Move : MonoBehaviour
     {
         extFrozen = duration;
         frozen = true;
+    }
+
+    public bool isBig()
+    {
+        return big;
     }
 }
