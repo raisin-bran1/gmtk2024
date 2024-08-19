@@ -5,8 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float speed;
-    private float damage = 1;
+    public float speed, damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Stair"))
+        if (collider.gameObject.CompareTag("Stair") || collider.gameObject.CompareTag("Weapon"))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collider);
         } else
