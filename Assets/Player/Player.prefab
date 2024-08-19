@@ -191,6 +191,7 @@ MonoBehaviour:
   health: 0
   invincibilityDuration: 0.3
   deathscreen: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!95 &2587480028772871670
 Animator:
   serializedVersion: 5
