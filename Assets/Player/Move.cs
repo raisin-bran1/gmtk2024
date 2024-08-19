@@ -71,15 +71,15 @@ public class Move : MonoBehaviour
 
         } else if (Input.GetKey(KeyCode.A))
         {
-            v.x = -speed;
-            //v.x -= speed * Time.deltaTime * 6;
-            //v.x = Mathf.Max(v.x, -speed);
+            //v.x = -speed;
+            v.x -= speed * Time.deltaTime * 12;
+            v.x = Mathf.Max(v.x, -speed);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            v.x = speed;
-            //v.x += speed * Time.deltaTime * 6;
-            //v.x = Mathf.Min(v.x, speed);
+            //v.x = speed;
+            v.x += speed * Time.deltaTime * 12;
+            v.x = Mathf.Min(v.x, speed);
         }
         else
         {
