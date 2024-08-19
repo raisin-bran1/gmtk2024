@@ -45,7 +45,9 @@ public class Combat : MonoBehaviour
             if (facing == -1 && weapon != null)
             {
                 weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
-                weapon.GetComponent<SpriteRenderer>().flipX = false;
+                Vector3 s = weapon.transform.localScale;
+                s.x = Mathf.Abs(s.x);
+                weapon.transform.localScale = s;
             }
             spriteRenderer.flipX = true;
             facing = 1;
@@ -54,7 +56,9 @@ public class Combat : MonoBehaviour
             if (facing == 1 && weapon != null)
             {
                 weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
-                weapon.GetComponent<SpriteRenderer>().flipX = true;
+                Vector3 s = weapon.transform.localScale;
+                s.x = -Mathf.Abs(s.x);
+                weapon.transform.localScale = s;
             }
             spriteRenderer.flipX = false;
             facing = -1;
