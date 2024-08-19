@@ -20,6 +20,15 @@ public class Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.H))
+        {
+            health += Time.deltaTime * 5;
+        }
+        if (health > maxhealth)
+        {
+            health = maxhealth;
+        }
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             facingLeft = false;

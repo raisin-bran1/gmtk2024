@@ -82,6 +82,18 @@ public class Move : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Stair"))
         {
             grounded = true;
+            if (collision.gameObject.CompareTag("Stair"))
+            {
+                rb.gravityScale = 0;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stair"))
+        {
+            rb.gravityScale = 5;
         }
     }
 
