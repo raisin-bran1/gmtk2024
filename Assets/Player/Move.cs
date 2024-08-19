@@ -27,7 +27,7 @@ public class Move : MonoBehaviour
             rb.velocity = v;
         }
 
-        if (frozen && rb.velocity.x < 0.5 && extFrozen <= 0)
+        if (frozen && Mathf.Abs(rb.velocity.x) < 0.5 && extFrozen <= 0)
         {
             frozen = false;
         }

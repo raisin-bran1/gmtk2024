@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - bullet: {fileID: 8866795045446650758, guid: d72d464b3e40a3341afaba8562ce37b6, type: 3}
+  - deathscreen: {fileID: 8143750570415597809, guid: 7564bf2dab93c9a43b2dfd601a55b345, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

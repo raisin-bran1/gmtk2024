@@ -24,7 +24,12 @@ public class GunCombat : MonoBehaviour
 
     public void Fire()
     {
-        GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        Quaternion rot = Quaternion.Euler(0, 0, -90);
+        if (spriteRenderer.flipX == true)
+        {
+            rot = Quaternion.Euler(0, 0, 90);
+        }
+        GameObject newBullet = Instantiate(bullet, transform.position, rot);
         newBullet.GetComponent<Projectile>().damage = damage;
         newBullet.GetComponent<Projectile>().speed *= fireSpeed;
         if (spriteRenderer.flipX == true)
