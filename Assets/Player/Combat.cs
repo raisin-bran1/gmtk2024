@@ -11,6 +11,7 @@ public class Combat : MonoBehaviour
     private float iFrames = 0, lastFired = 0;
     private GameObject weapon;
     public GameObject deathscreen;
+    public Animator animator;
 
     SpriteRenderer spriteRenderer;
     Move move;
@@ -114,8 +115,8 @@ public class Combat : MonoBehaviour
 
     IEnumerator Death()
     {
-        // [Trigger death animation]
-        yield return new WaitForSeconds(0.5f);
+        animator.SetTrigger("Dead");
+        yield return new WaitForSeconds(1f);
         Instantiate(deathscreen);
         Time.timeScale = 0;
     }
