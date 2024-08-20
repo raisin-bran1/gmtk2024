@@ -19,7 +19,7 @@ public class StairCollision : MonoBehaviour
     void Update()
     {
         float playerbottom = Player.transform.position.y - Player.transform.localScale.y / 2;
-        if ((Player.transform.position.x - transform.position.x) + transform.position.y <= playerbottom)
+        if (transform.localScale.x * (Player.transform.position.x - transform.position.x) + transform.position.y <= playerbottom)
         {
             enablecol = true;
         }
