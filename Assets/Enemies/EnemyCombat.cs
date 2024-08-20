@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     public float health = 5;
-    private float lastHit = 1;
+    private float lastHit = 1, iFrames = 0;
     public Worldbuilder wb;
     Animator animator;
     Animator childAnimator;
@@ -20,6 +20,7 @@ public class EnemyCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        iFrames -= Time.deltaTime;
         lastHit += Time.deltaTime;
         childAnimator.SetFloat("LastHit", lastHit);
     }
