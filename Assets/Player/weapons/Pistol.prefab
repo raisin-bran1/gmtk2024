@@ -240,6 +240,7 @@ MonoBehaviour:
   firingRot: 0
   isPistol: 1
   bullet: {fileID: 8866795045446650758, guid: d72d464b3e40a3341afaba8562ce37b6, type: 3}
+  fire: {fileID: 8300000, guid: 62e24356a38fd8c44826e0a798552984, type: 3}
 --- !u!95 &7585595787292981544
 Animator:
   serializedVersion: 5

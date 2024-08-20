@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunCombat : MonoBehaviour
@@ -8,6 +9,7 @@ public class GunCombat : MonoBehaviour
     public float fireGap, damage, fireSpeed, idleX, idleY, idleRot, firingX, firingY, firingRot;
     public bool isPistol;
     public GameObject bullet;
+    [SerializeField] AudioClip fire;
 
     SpriteRenderer spriteRenderer;
 
@@ -34,6 +36,7 @@ public class GunCombat : MonoBehaviour
             rot = Quaternion.Euler(0, 0, 90);
             newBullet.GetComponent<Projectile>().speed *= -1;
         }
+        AudioSource.PlayClipAtPoint(fire, transform.position, 1);
     }
 
     public void Position(float flip, bool firing)
