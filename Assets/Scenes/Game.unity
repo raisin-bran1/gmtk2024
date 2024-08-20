@@ -215,6 +215,13 @@ MonoBehaviour:
   floor: {fileID: 4921684052357942812, guid: 87668cab79ba15349b8c6dfb0d298178, type: 3}
   platform: {fileID: 4122264395899538400, guid: 9d053c66aecbdf34dbb513a8fbfc28cb, type: 3}
   stair: {fileID: 115744261060764347, guid: 523d906fd76d9da43a6810764c3c021d, type: 3}
+  enemy: {fileID: 3566600170117630905, guid: 0f9ba97bc3694e644ad35d538cefa0db, type: 3}
+  cabinet1: {fileID: 4663903327395561988, guid: 8ca5cebbb96652d4e8e4ff14a4f955f3, type: 3}
+  cabinet2: {fileID: 5169087617287753692, guid: eb0edc7f873270549a16c8b434ac0ea4, type: 3}
+  table: {fileID: 2289898027942081770, guid: 0233213daf0040f4abaea0d7287b4d33, type: 3}
+  window: {fileID: 649185998915369389, guid: d0c855d5837eb2e46937a77bdc6bc46e, type: 3}
+  pistol: {fileID: 2064610224932732514, guid: d9720c85c18c29d4c8e8a955f08b2578, type: 3}
+  m4: {fileID: 410447673940328198, guid: 154e19ff90dace049841473014210b79, type: 3}
 --- !u!4 &234883650
 Transform:
   m_ObjectHideFlags: 0
