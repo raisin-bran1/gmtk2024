@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4844131480494585172}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Wall
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122264395899538400, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6125975505212141133, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_LocalScale.x
@@ -222,11 +222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8214903862054136866, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Size.x
-      value: 1.05
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 8214903862054136866, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Size.y
-      value: 1.8
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 8214903862054136866, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Material
@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8214903862054136866, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
       propertyPath: m_Offset.y
-      value: -0.5
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 739377143199614747, guid: 8760f5088fc5db446a9fb695642bd149, type: 3}
