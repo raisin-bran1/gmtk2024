@@ -10,7 +10,7 @@ public class Worldbuilder : MonoBehaviour
     {
         Time.timeScale = 1;
         int count = 0;
-        for (float i = 15.25f; i <= 104.5f; i += 5.5f)
+        for (float i = 15.25f; i <= 108.75f; i += 5.5f)
         {
             count++;
             if (count % 2 == 0)

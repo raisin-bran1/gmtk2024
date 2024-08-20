@@ -126,7 +126,7 @@ public class Combat : MonoBehaviour
     IEnumerator Death()
     {
         animator.SetTrigger("Dead");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         Instantiate(deathscreen);
         Time.timeScale = 0;
     }
