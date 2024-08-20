@@ -41,6 +41,23 @@ public class EnemyCombat : MonoBehaviour
             animator.SetBool("Dead", true);
             Destroy(gameObject, 0.617f);
 
+        if (iFrames <= 0) {
+            iFrames = 0.15f;
+            health -= damage;
+            lastHit = 0;
+            if (speed > 0)
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+            } else
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if (health <= 0)
+            {
+                animator.SetBool("Dead", true);
+                Destroy(gameObject, 0.617f);
+
+            }
         }
     }
 }

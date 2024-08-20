@@ -14,6 +14,7 @@ public class Combat : MonoBehaviour
     public Animator animator;
     private bool fire = false;
     private int weaponChildNumber = 2;
+    private float meleeTime = 0.2f;
 
     SpriteRenderer spriteRenderer;
     Move move;
@@ -33,12 +34,14 @@ public class Combat : MonoBehaviour
     {
         iFrames -= Time.deltaTime;
         lastFired -= Time.deltaTime;
+        meleeTime += Time.deltaTime;
+        animator.SetFloat("MeleeTime", meleeTime);
         if (weapon != null && lastFired <= 0 && lastFired + Time.deltaTime >= 0)
         {
             weapon.gameObject.GetComponent<Animator>().SetBool("Fire", false);
             animator.SetBool("Fire", false);
             fire = false;
-            weapon.GetComponent<GunCombat>().Position(facing, fire);
+            weapon.GetComponent<GunCombat>().Position(facing, false, false);
         }
 
         if (Input.GetKey(KeyCode.H))
@@ -57,17 +60,23 @@ public class Combat : MonoBehaviour
         {
             if (facing == -1 && weapon != null)
             {
-                weapon.GetComponent<GunCombat>().Position(1, fire);
+                weapon.GetComponent<GunCombat>().Position(-1, fire, false);
             }
-            spriteRenderer.flipX = true;
+            Vector3 s = transform.localScale;
+            s.x = -Mathf.Abs(s.x);
+            transform.localScale = s;
+            //spriteRenderer.flipX = true;
             facing = 1;
         } else if (Input.GetKeyDown(KeyCode.A))
         {
             if (facing == 1 && weapon != null)
             {
-                weapon.GetComponent<GunCombat>().Position(-1, fire);
+                weapon.GetComponent<GunCombat>().Position(1, fire, false);
             }
-            spriteRenderer.flipX = false;
+            Vector3 s = transform.localScale;
+            s.x = Mathf.Abs(s.x);
+            transform.localScale = s;
+            //spriteRenderer.flipX = false;
             facing = -1;
         }
 
@@ -78,7 +87,7 @@ public class Combat : MonoBehaviour
             animator.SetBool("Fire", true);
             fire = true;
             GunCombat c = weapon.GetComponent<GunCombat>();
-            c.Position(facing, fire);
+            c.Position(facing, fire, false);
             c.Fire();
             StartCoroutine(c.Wiggle());
             move.extFreeze(0.5f);
@@ -86,6 +95,11 @@ public class Combat : MonoBehaviour
             {
                 rb.velocity = new Vector2();
             }
+        }
+        if(Input.GetKey(KeyCode.I) && meleeTime >= 0.8 && lastFired <= 0)
+        {
+            lastFired = 0.8f;
+            meleeTime = 0;
         }
 
     }
@@ -107,7 +121,7 @@ public class Combat : MonoBehaviour
                 {
                     weapon.transform.localScale *= 0.5f;
                 }
-                weapon.GetComponent<GunCombat>().Position(1, fire);
+                weapon.GetComponent<GunCombat>().Position(1, fire, true);
                 animator.SetBool("CarryingPistol", weapon.GetComponent<GunCombat>().isPistol);
                 AudioSource.PlayClipAtPoint(loot, transform.position, 1);
             }
@@ -116,12 +130,28 @@ public class Combat : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && iFrames <= 0)
+        if (collision.gameObject.CompareTag("Enemy") && iFrames <= 0 && meleeTime >= 0.6f)
         {
-            health = Math.Max(health-1, 0);
+            health = Math.Max(health - 1, 0);
             Vector3 collisionVector = transform.position - collision.transform.position;
             move.Bump(new Vector2(collisionVector.x, collisionVector.y / 2) * 15);
             iFrames = invincibilityDuration;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && meleeTime < 0.6f)
+        {
+            if (move.isBig())
+            {
+                collision.gameObject.GetComponent<EnemyCombat>().Damage(2, transform.localScale.x);
+            } else
+            {
+                collision.gameObject.GetComponent<EnemyCombat>().Damage(1, transform.localScale.x);
+            }
+            Vector3 collisionVector = collision.transform.position - transform.position;
+            collision.gameObject.GetComponent<EnemyMove>().Bump(collisionVector);
         }
     }
 
