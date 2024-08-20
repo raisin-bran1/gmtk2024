@@ -12,14 +12,14 @@ public class StairCollision : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        col = GetComponent<BoxCollider2D>();
+        col = transform.GetChild(0).GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float playerbottom = Player.transform.position.y - Player.transform.localScale.y / 2;
-        if (Mathf.Tan(transform.eulerAngles.z * 3.14f / 180) * (Player.transform.position.x - transform.position.x) + transform.position.y <= playerbottom)
+        if ((Player.transform.position.x - transform.position.x) + transform.position.y <= playerbottom)
         {
             enablecol = true;
         }

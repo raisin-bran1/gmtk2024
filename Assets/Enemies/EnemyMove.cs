@@ -50,7 +50,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stair"))
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
+            Physics2D.IgnoreCollision(GetComponentInChildren<Collider2D>(), collision.collider);
         }
     }
 }
