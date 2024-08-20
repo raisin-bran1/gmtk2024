@@ -44,7 +44,7 @@ public class Combat : MonoBehaviour
             weapon.GetComponent<GunCombat>().Position(facing, false, false);
         }
 
-        if (Input.GetKey(KeyCode.H))
+        if (Input.GetKey(KeyCode.H) && iFrames < -5)
         {
             health += Time.deltaTime * 5;
         }
