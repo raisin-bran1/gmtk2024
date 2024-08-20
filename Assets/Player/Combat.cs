@@ -17,6 +17,7 @@ public class Combat : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Move move;
+    [SerializeField] AudioClip loot;
 
     // Start is called before the first frame update
     void Start()
@@ -108,6 +109,7 @@ public class Combat : MonoBehaviour
                 }
                 weapon.GetComponent<GunCombat>().Position(1, fire);
                 animator.SetBool("CarryingPistol", weapon.GetComponent<GunCombat>().isPistol);
+                AudioSource.PlayClipAtPoint(loot, transform.position, 1);
             }
         }
     }

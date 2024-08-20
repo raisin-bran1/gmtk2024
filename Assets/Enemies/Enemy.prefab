@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   wb: {fileID: 0}
+  blood: {fileID: 8300000, guid: 04884d962a8c6a44493051804c132710, type: 3}
 --- !u!95 &8305304397622580172
 Animator:
   serializedVersion: 5

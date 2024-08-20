@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
@@ -118,6 +119,14 @@ public class Move : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Win"))
+        {
+            StartCoroutine(Win());
+        }
+    }
+
     public void Bump(Vector2 direction)
     {
         frozen = true;
@@ -138,5 +147,11 @@ public class Move : MonoBehaviour
     public bool isGrounded()
     {
         return grounded;
+    }
+
+    IEnumerator Win()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Win");
     }
 }

@@ -9,6 +9,7 @@ public class EnemyCombat : MonoBehaviour
     public Worldbuilder wb;
     Animator animator;
     Animator childAnimator;
+    [SerializeField] AudioClip blood;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class EnemyCombat : MonoBehaviour
 
     public void Damage(float damage, float speed)
     {
-
+        AudioSource.PlayClipAtPoint(blood, transform.position, 0.5f);
         health -= damage;
         lastHit = 0;
         if (speed > 0)

@@ -9,6 +9,7 @@ TagManager:
   - Stair
   - Enemy
   - Weapon
+  - Win
   layers:
   - Default
   - TransparentFX
