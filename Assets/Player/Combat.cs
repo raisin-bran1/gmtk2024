@@ -12,6 +12,8 @@ public class Combat : MonoBehaviour
     private GameObject weapon;
     public GameObject deathscreen;
     public Animator animator;
+    private bool fire = false;
+    private int weaponChildNumber = 2;
 
     SpriteRenderer spriteRenderer;
     Move move;
@@ -28,6 +30,16 @@ public class Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        iFrames -= Time.deltaTime;
+        lastFired -= Time.deltaTime;
+        if (weapon != null && lastFired <= 0 && lastFired + Time.deltaTime >= 0)
+        {
+            weapon.gameObject.GetComponent<Animator>().SetBool("Fire", false);
+            animator.SetBool("Fire", false);
+            fire = false;
+            weapon.GetComponent<GunCombat>().Position(facing, fire);
+        }
+
         if (Input.GetKey(KeyCode.H))
         {
             health += Time.deltaTime * 5;
@@ -44,10 +56,7 @@ public class Combat : MonoBehaviour
         {
             if (facing == -1 && weapon != null)
             {
-                weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
-                Vector3 s = weapon.transform.localScale;
-                s.x = Mathf.Abs(s.x);
-                weapon.transform.localScale = s;
+                weapon.GetComponent<GunCombat>().Position(1, fire);
             }
             spriteRenderer.flipX = true;
             facing = 1;
@@ -55,10 +64,7 @@ public class Combat : MonoBehaviour
         {
             if (facing == 1 && weapon != null)
             {
-                weapon.transform.position = gameObject.transform.position + new Vector3(facing * -1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
-                Vector3 s = weapon.transform.localScale;
-                s.x = -Mathf.Abs(s.x);
-                weapon.transform.localScale = s;
+                weapon.GetComponent<GunCombat>().Position(-1, fire);
             }
             spriteRenderer.flipX = false;
             facing = -1;
@@ -66,17 +72,20 @@ public class Combat : MonoBehaviour
 
         if (Input.GetKey(KeyCode.K) && lastFired <= 0 && weapon != null)
         {
-            weapon.GetComponent<GunCombat>().Fire();
             lastFired = weapon.GetComponent<GunCombat>().fireGap;
+            weapon.gameObject.GetComponent<Animator>().SetBool("Fire", true);
+            animator.SetBool("Fire", true);
+            fire = true;
+            GunCombat c = weapon.GetComponent<GunCombat>();
+            c.Position(facing, fire);
+            c.Fire();
+            StartCoroutine(c.Wiggle());
             move.extFreeze(0.5f);
             if (move.isGrounded())
             {
                 rb.velocity = new Vector2();
             }
         }
-
-        iFrames -= Time.deltaTime;
-        lastFired -= Time.deltaTime;
 
     }
 
@@ -86,10 +95,10 @@ public class Combat : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.L) && lastFired <= 0)
             {
-                lastFired = 1;
-                if (gameObject.transform.childCount > 1)
+                lastFired = 0.5f;
+                if (gameObject.transform.childCount > weaponChildNumber)
                 {
-                    gameObject.transform.GetChild(1).gameObject.transform.parent = null;
+                    gameObject.transform.GetChild(weaponChildNumber).gameObject.transform.parent = null;
                 }
                 weapon = collider.gameObject;
                 weapon.transform.parent = gameObject.transform;
@@ -97,11 +106,8 @@ public class Combat : MonoBehaviour
                 {
                     weapon.transform.localScale *= 0.5f;
                 }
-                weapon.transform.position = gameObject.transform.position + new Vector3(facing * 1 * gameObject.transform.localScale.x, 0 * gameObject.transform.localScale.y, 0);
-                if (facing == -1)
-                {
-                    weapon.GetComponent<SpriteRenderer>().flipX = true;
-                }
+                weapon.GetComponent<GunCombat>().Position(1, fire);
+                animator.SetBool("CarryingPistol", weapon.GetComponent<GunCombat>().isPistol);
             }
         }
     }

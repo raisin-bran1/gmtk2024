@@ -8,6 +8,7 @@ public class Move : MonoBehaviour
     public float jump, speed;
     private bool grounded, frozen, big;
     private float extFrozen = 0;
+    private int weaponChildNumber = 2;
 
     Animator animator;
 
@@ -44,8 +45,9 @@ public class Move : MonoBehaviour
                 transform.localScale = transform.localScale * 2f;
                 jump -= 4;
                 speed *= 0.5f;
-                if (gameObject.transform.childCount > 1) {
-                    gameObject.transform.GetChild(1).gameObject.GetComponent<GunCombat>().damage *= 2f;
+                rb.mass *= 2;
+                if (gameObject.transform.childCount > weaponChildNumber) {
+                    gameObject.transform.GetChild(weaponChildNumber).gameObject.GetComponent<GunCombat>().damage *= 2f;
                 }
             }
             else
@@ -54,9 +56,10 @@ public class Move : MonoBehaviour
                 transform.localScale = transform.localScale * 0.5f;
                 jump += 4;
                 speed *= 2f;
-                if (gameObject.transform.childCount > 1)
+                rb.mass *= 0.5f;
+                if (gameObject.transform.childCount > weaponChildNumber)
                 {
-                    gameObject.transform.GetChild(1).gameObject.GetComponent<GunCombat>().damage *= 0.5f;
+                    gameObject.transform.GetChild(weaponChildNumber).gameObject.GetComponent<GunCombat>().damage *= 0.5f;
                 }
             }
         }
@@ -70,15 +73,15 @@ public class Move : MonoBehaviour
 
         } else if (Input.GetKey(KeyCode.A))
         {
-            v.x = -speed;
-            //v.x -= speed * Time.deltaTime * 6;
-            //v.x = Mathf.Max(v.x, -speed);
+            //v.x = -speed;
+            v.x -= speed * Time.deltaTime * 12;
+            v.x = Mathf.Max(v.x, -speed);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            v.x = speed;
-            //v.x += speed * Time.deltaTime * 6;
-            //v.x = Mathf.Min(v.x, speed);
+            //v.x = speed;
+            v.x += speed * Time.deltaTime * 12;
+            v.x = Mathf.Min(v.x, speed);
         }
         else
         {
