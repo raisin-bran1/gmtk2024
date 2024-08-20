@@ -35,7 +35,7 @@ public class Move : MonoBehaviour
             rb.velocity = v;
         }
 
-        if (frozen && Mathf.Abs(rb.velocity.x) < 0.5 && extFrozen <= 0)
+        if (frozen && extFrozen <= 0)
         {
             frozen = false;
         }
@@ -136,6 +136,7 @@ public class Move : MonoBehaviour
     public void Bump(Vector2 direction)
     {
         frozen = true;
+        extFrozen = 0.2f;
         rb.velocity = direction;
     }
 
@@ -157,7 +158,7 @@ public class Move : MonoBehaviour
 
     IEnumerator Win()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Win");
     }
 }

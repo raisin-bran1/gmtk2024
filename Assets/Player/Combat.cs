@@ -130,7 +130,7 @@ public class Combat : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && iFrames <= 0 && meleeTime >= 0.6f)
+        if (collision.gameObject.CompareTag("Enemy") && iFrames <= 0 && ((collision.gameObject.transform.position - transform.position).x * transform.localScale.x > 0 || meleeTime >= 0.6f))
         {
             health = Math.Max(health - 1, 0);
             Vector3 collisionVector = transform.position - collision.transform.position;
@@ -141,7 +141,7 @@ public class Combat : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && meleeTime < 0.6f)
+        if (collision.gameObject.CompareTag("Enemy") && meleeTime < 0.6f && (collision.gameObject.transform.position - transform.position).x * transform.localScale.x < 0)
         {
             if (move.isBig())
             {

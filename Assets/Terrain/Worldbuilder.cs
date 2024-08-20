@@ -5,7 +5,7 @@ using UnityEngine;
 public class Worldbuilder : MonoBehaviour
 {
     public GameObject floor, platform, stair, enemy, cabinet1, cabinet2, table, window, pistol, m4;
-    private int enemyCount = 1;
+    private int enemyCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,9 +73,9 @@ public class Worldbuilder : MonoBehaviour
         }
     }
 
-    public void DecrementEnemies()
+    public void IncrementEnemies()
     {
-        enemyCount--;
+        enemyCount++;
     }
 
     public int GetEnemyCount()
