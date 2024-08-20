@@ -45,7 +45,7 @@ public class Worldbuilder : MonoBehaviour
         f2.transform.localScale = new Vector3(7.5f - platformx, 0.5f, 1);
         for (int x = 0; x < difficulty / 5 + 1; x++)
         {
-            Instantiate(enemy, new Vector3(platformx - x, ceilingHeight - 4, 0), Quaternion.identity);
+            Instantiate(enemy, new Vector3(Random.Range(-10,10), ceilingHeight - 4, 0), Quaternion.identity);
         }
         if (Random.Range(0, 2) < 1)
         {
@@ -57,7 +57,7 @@ public class Worldbuilder : MonoBehaviour
         }
         if (Random.Range(0, 2) < 1)
         {
-            Instantiate(table, new Vector3(4 + Random.Range(0, 3), ceilingHeight - 4, 0), Quaternion.identity);
+            Instantiate(table, new Vector3(4 + Random.Range(0, 6), ceilingHeight - 4, 0), Quaternion.identity);
         }
         if (Random.Range(0, 2) < 1)
         {
