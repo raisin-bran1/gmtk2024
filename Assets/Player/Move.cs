@@ -11,6 +11,8 @@ public class Move : MonoBehaviour
     private float extFrozen = 0;
     private int weaponChildNumber = 2;
 
+    public GameObject background;
+
     Animator animator;
 
     // Start is called before the first frame update
@@ -64,6 +66,10 @@ public class Move : MonoBehaviour
                 }
             }
         }
+        /*Vector3 position = transform.position;
+        position = position * 0.98f;
+        position.y = position.y - 0.129f;
+        background.transform.position = position;*/
     }
 
     void FixedUpdate()
