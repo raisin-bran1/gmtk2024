@@ -101,7 +101,7 @@ public class Move : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("Stair"))
             {
-                rb.gravityScale = 0;
+                rb.gravityScale = 1;
             }
         }
     }
@@ -111,6 +111,7 @@ public class Move : MonoBehaviour
         if (collision.gameObject.CompareTag("Stair"))
         {
             rb.gravityScale = 5;
+            grounded = false;
         }
     }
 
