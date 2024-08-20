@@ -8,12 +8,17 @@ public class EnemyMove : MonoBehaviour
     private GameObject Player;
     public float speed;
     private float startpos;
+
+    SpriteRenderer spriteRenderer;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Player = GameObject.FindWithTag("Player");
         startpos = transform.position.x;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,22 +33,28 @@ public class EnemyMove : MonoBehaviour
             } else if (transform.position.x > startpos)
             {
                 v.x = -speed / 2;
+                spriteRenderer.flipX = false;
+
             } else
             {
                 v.x = speed / 2;
+                spriteRenderer.flipX = true;
             }
         } else
         {
             if (Player.transform.position.x > transform.position.x)
             {
                 v.x = speed;
+                spriteRenderer.flipX = true;
             }
             else
             {
                 v.x = -speed;
+                spriteRenderer.flipX = false;
             }
         }
         rb.velocity = v;
+        animator.SetFloat("VelocityX", Mathf.Abs(v.x));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

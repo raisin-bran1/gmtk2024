@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
         {
             if (collider.gameObject.CompareTag("Enemy"))
             {
-                collider.gameObject.GetComponent<EnemyCombat>().Damage(damage);
+                collider.gameObject.GetComponent<EnemyCombat>().Damage(damage, speed);
             }
             Destroy(gameObject);
         }
